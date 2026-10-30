@@ -233,6 +233,13 @@ section+section{padding-top:0}
 .hcard .ctx{display:block;font-size:var(--fs-7);color:var(--muted-fg);margin-top:5px;line-height:1.5}
 .hcard .yr{position:absolute;top:18px;right:20px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:var(--muted-fg)}
 .hcard.award b{color:var(--primary)}
+/* about film: a 20 s silent loop of the highlights; the grid stays for reduced motion, screen readers and search */
+.film{display:none;margin:0;max-width:480px;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:#080b12;box-shadow:var(--shadow)}
+.film video,.film img{display:block;width:100%;height:100%;object-fit:cover}
+@media(prefers-reduced-motion:no-preference){
+  .film{display:block}
+  .film+.stats{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+}
 
 /* timeline */
 .tl{position:relative;--col:172px;max-width:960px;margin-inline:auto}
@@ -505,7 +512,14 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
           <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.1V12a10 10 0 1 1-5.9-9.1"/><path d="M22 4 12 14l-3-3"/></svg>Payments, government &amp; telecom depth</li>
         </ul>
       </div>
-      <div class="stats rv" id="hlgrid" style="--d:120ms"></div>
+      <div class="rv" style="--d:120ms">
+        <figure class="film">
+          <video id="film" autoplay muted loop playsinline preload="none" poster="assets/about-film-poster.jpg" data-src="assets/about-film.mp4" width="864" height="1080" aria-hidden="true">
+            <img src="assets/about-film-poster.jpg" alt="" width="864" height="1080">
+          </video>
+        </figure>
+        <div class="stats" id="hlgrid"></div>
+      </div>
     </div>
     </div>
   </div>
@@ -728,6 +742,7 @@ const SKILLS=[
 
 const CERTS=[
 {t:"Winner — Unlocking Productivity Through Connected Health Data, GovHack 2025",iss:"Infosys",d:"Dec 2025",award:true},
+{t:"Loop Engineering with LangChain Deep Agents",iss:"DeepLearning.AI",d:"Oct 2026"},
 {t:"Agent Skills with Anthropic",iss:"DeepLearning.AI",d:"Feb 2026"},
 {t:"Agentic AI Certification",iss:"DeepLearning.AI",d:"Oct 2025"},
 {t:"Building Live Voice Agents with Google's ADK",iss:"DeepLearning.AI",d:"Oct 2025"},
@@ -951,6 +966,17 @@ const cnt=new IntersectionObserver((es,o)=>{es.forEach(e=>{
     if(p<1)requestAnimationFrame(tick)};
   requestAnimationFrame(tick);})},{threshold:.5});
 document.querySelectorAll('.count').forEach(x=>cnt.observe(x));
+
+// about film: load it only near the viewport, never for reduced motion, and pause it off-screen
+const film=document.getElementById('film');
+if(film&&!reduce){
+  // the grid is visually hidden behind the film, so give its counters their final values now
+  document.querySelectorAll('#hlgrid .count').forEach(n=>{cnt.unobserve(n);n.textContent=n.dataset.to});
+  new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){if(!film.src)film.src=film.dataset.src;film.play().catch(()=>{})}
+    else if(film.src)film.pause();
+  }),{rootMargin:'200px 0px'}).observe(film);
+}
 
 // cursor spotlight
 if(!reduce&&matchMedia('(hover:hover)').matches){
