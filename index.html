@@ -299,6 +299,8 @@ section+section{padding-top:0}
 .pdesc{color:var(--fg-2);font-size:var(--fs-6);margin-top:12px;line-height:1.6}
 .impact{display:flex;gap:10px;align-items:flex-start;border-left:2px solid var(--primary);padding:2px 0 2px 12px;margin-top:16px;font-size:var(--fs-6);font-weight:500;color:var(--fg)}
 .impact svg{flex:none;margin-top:3px;color:var(--primary)}
+.plink{display:inline-flex;align-items:center;gap:6px;width:max-content;margin-top:14px;font-size:var(--fs-6);font-weight:600;color:var(--primary)}
+.plink:hover{text-decoration:underline;text-underline-offset:3px}
 .pbody .techs{margin-top:auto;padding-top:18px}
 
 /* skills */
@@ -352,6 +354,17 @@ section+section{padding-top:0}
 .affil li{display:flex;gap:10px;font-size:var(--fs-6);color:var(--fg-2);padding:11px 0;border-top:1px solid var(--border);line-height:1.5}
 .affil li::before{content:"";flex:none;width:12px;height:1px;background:var(--border-2);margin-top:10px}
 
+/* writing */
+.posts{list-style:none;border-top:1px solid var(--border)}
+.post{display:grid;grid-template-columns:150px 1fr auto;gap:6px 28px;align-items:baseline;padding:22px 4px;border-bottom:1px solid var(--border);transition:padding-left .3s var(--ease)}
+.post:hover{padding-left:12px}
+.post:hover b{color:var(--primary)}
+.post .pdate{font-size:12.5px;color:var(--muted-fg);white-space:nowrap}
+.post b{display:block;font-family:'Sora','Inter',sans-serif;font-size:var(--fs-3);font-weight:600;letter-spacing:-.015em;line-height:1.3;color:var(--fg);transition:color .25s}
+.post .psub{display:block;margin-top:6px;max-width:680px;font-size:var(--fs-6);line-height:1.6;color:var(--muted-fg)}
+.post svg{align-self:center;color:var(--muted-fg)}
+#writing .plink{margin-top:22px}
+
 /* contact */
 .cwrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
 .crows{display:grid;align-content:start;border-top:1px solid var(--border)}
@@ -403,6 +416,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
 @media(max-width:820px){
   .links,.navr .cta{display:none}#burger{display:grid}
   .hl,.frow{grid-template-columns:1fr}
+  .post{grid-template-columns:1fr auto}.post .pdate{grid-column:1/-1}
   section{padding:80px 0}
   .feature{padding:80px 0!important}
   .chip-stat{left:-10px;bottom:16px}
@@ -430,7 +444,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
       <a href="#home" class="brand"><span class="mark">PW</span><span>Pramuk</span></a>
       <ul class="links" id="navlinks">
         <li><a href="#home">Home</a></li><li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#writing">Writing</a></li>
         <li><a href="#skills">Skills</a></li><li><a href="#certifications">Certifications</a></li>
         <li><a href="#education">Education</a></li><li><a href="#contact">Contact</a></li>
       </ul>
@@ -447,7 +461,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
   </div>
   <ul id="mobile">
     <li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li><li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li><li><a href="#writing">Writing</a></li><li><a href="#skills">Skills</a></li>
     <li><a href="#certifications">Certifications</a></li><li><a href="#education">Education</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -479,6 +493,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
         <div class="socials">
           <a class="iconbtn" href="https://github.com/pramukha" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.8 21.5c.5.1.7-.2.7-.5v-1.7C6.7 19.9 6.1 18 6.1 18c-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"/></svg></a>
           <a class="iconbtn" href="https://www.linkedin.com/in/pramukha" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68Z"/></svg></a>
+          <a class="iconbtn" href="https://medium.com/@pramukha" target="_blank" rel="noopener noreferrer" aria-label="Medium"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></a>
           <a class="iconbtn" href="mailto:pramukha@gmail.com" aria-label="Email"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></a>
         </div>
       </div>
@@ -540,9 +555,17 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
   </div>
 </section>
 
+<section id="writing">
+  <div class="wrap">
+    <div class="head rv"><p class="eyebrow"><span class="idx">04</span>Writing</p><h2>Build Notes on Medium</h2><p>A series on taking a multi-label RAG classifier from a plateau to production, one hard-won lesson per post.</p></div>
+    <ol class="posts" id="posts"></ol>
+    <a class="plink rv" href="https://medium.com/@pramukha" target="_blank" rel="noopener noreferrer">All posts on Medium<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </div>
+</section>
+
 <section id="skills">
   <div class="wrap">
-    <div class="head rv"><p class="eyebrow"><span class="idx">04</span>Toolbox</p><h2>Skills &amp; Technologies</h2><p>A full-stack architect's toolkit, from LLM orchestration to distributed systems.</p></div>
+    <div class="head rv"><p class="eyebrow"><span class="idx">05</span>Toolbox</p><h2>Skills &amp; Technologies</h2><p>A full-stack architect's toolkit, from LLM orchestration to distributed systems.</p></div>
     <div class="search rv">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       <input type="text" id="sq" placeholder="Search skills… (e.g. LangChain, Azure, .NET)" aria-label="Search skills">
@@ -553,14 +576,14 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
 
 <section id="certifications">
   <div class="wrap">
-    <div class="head rv"><p class="eyebrow"><span class="idx">05</span>Credentials</p><h2>Certifications &amp; Awards</h2><p>Recognised expertise in agentic AI, cloud and applied engineering.</p></div>
+    <div class="head rv"><p class="eyebrow"><span class="idx">06</span>Credentials</p><h2>Certifications &amp; Awards</h2><p>Recognised expertise in agentic AI, cloud and applied engineering.</p></div>
     <div class="cgrid" id="cgrid"></div>
   </div>
 </section>
 
 <section id="education">
   <div class="wrap">
-    <div class="head rv"><p class="eyebrow"><span class="idx">06</span>Background</p><h2>Education &amp; Affiliations</h2></div>
+    <div class="head rv"><p class="eyebrow"><span class="idx">07</span>Background</p><h2>Education &amp; Affiliations</h2></div>
     <div class="edu">
       <div class="etl" id="etl"></div>
       <div class="affil rv" style="--d:120ms">
@@ -580,7 +603,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
 
 <section id="contact">
   <div class="wrap">
-    <div class="head rv"><p class="eyebrow"><span class="idx">07</span>Get in touch</p><h2>Let's build something intelligent</h2><p>Open to architecture engagements, AI advisory and interesting problems.</p></div>
+    <div class="head rv"><p class="eyebrow"><span class="idx">08</span>Get in touch</p><h2>Let's build something intelligent</h2><p>Open to architecture engagements, AI advisory and interesting problems.</p></div>
     <div class="cwrap">
       <div class="crows rv">
         <a class="crow"  href="mailto:pramukha@gmail.com">
@@ -619,7 +642,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
       </div>
       <ul class="fnav">
         <li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li><li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li><li><a href="#writing">Writing</a></li><li><a href="#skills">Skills</a></li>
         <li><a href="#certifications">Certifications</a></li><li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -640,7 +663,10 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
 const EXP=[
 {role:"AI Solutions Architect / Forward Deployed Engineer",co:"Inov8 Limited",loc:"Wellington, New Zealand",per:"Jul 2025 – Present",now:true,
  sum:"Enterprise AI solutions and cloud architecture for New Zealand government agencies.",
- pts:["Architect multi-agent RAG systems with LangChain, processing 150K+ datasets for multi-label classification across 350+ categories.",
+ pts:["Architect multi-agent RAG systems with LangChain over 150K+ incident cases for multi-label classification across 350+ categories.",
+ "Fine-tune DeBERTa-v3-base on ~100K labelled decisions, quantised from 700MB to 233MB for CPU inference.",
+ "Expose the prediction API to AI agents as 37 MCP tools with fastapi-mcp, reusing the existing auth.",
+ "Build feedback loops that fold reviewer corrections back into the vector index, without retraining.",
  "Build locally-hosted AI solutions using Model Context Protocol (MCP) for privacy-sensitive government applications.",
  "Design Azure-native solutions integrating AI Search, Container Apps, SQL Database and Key Vault with government-grade security.",
  "Develop FastAPI microservices and vector search pipelines with PostgreSQL/pgvector for cosine similarity retrieval.",
@@ -706,9 +732,10 @@ const EXP=[
 
 const PROJ=[
 {t:"CAS-Agentic-RAG — AI-Powered Traffic Incident Analysis",org:"Inov8 / NZTA",dt:"Oct 2025",cat:"AI / GenAI",
- d:"Multi-agent RAG platform predicting contributing factors for NZTA traffic incidents.",
- impact:"Structured, explainable predictions across large-scale incident datasets.",
- tech:["FastAPI","LangChain","Azure OpenAI","pgvector","PostgreSQL","React","Multi-Agent"]},
+ d:"Agentic RAG that predicts contributing factors for NZTA traffic incidents from 150K+ historical cases, with a fine-tuned DeBERTa classifier as verifiable priors and the API exposed to AI agents through MCP.",
+ impact:"F1 from 0.42 to 0.63 with label-aware indexing, then a further +5% from fine-tuned classifier priors.",
+ link:{u:"https://medium.com/@pramukha",l:"Read the build series on Medium"},
+ tech:["FastAPI","LangChain","Azure OpenAI","DeBERTa-v3","fastapi-mcp","text-embedding-3-large","pgvector","PostgreSQL","React","Multi-Agent"]},
 {t:"Multi-Agent AI Customer Service Chatbot — Public Sector",org:"Personal R&amp;D",dt:"2025",cat:"AI / GenAI",
  d:"Production-ready multi-agent chatbot giving residents instant answers via text and voice.",
  impact:"Low-latency multimodal assistant with production-grade observability and security.",
@@ -752,7 +779,7 @@ const CERTS=[
 // Highlights strip in About (n = animated count, suf = suffix, txt = static value instead of a number)
 const ACH=[
 {n:20,suf:"+",y:"2004 – now",t:"Years in enterprise software",d:"Government, banking and telecom across New Zealand, Singapore, the UK and Sri Lanka."},
-{n:150,suf:"K+",y:"2025",t:"Datasets classified across 350+ categories",d:"Multi-agent RAG classification pipeline for a New Zealand government agency."},
+{n:150,suf:"K+",y:"2025",t:"Incident cases classified across 350+ categories",d:"Multi-agent RAG classification pipeline for a New Zealand government agency."},
 {n:10,suf:"+",y:"2014 – 2019",t:"APAC banks live on payments platforms I led",d:"SmartVista card issuing, acquiring, switching and settlement."},
 {txt:"Winner",y:"2025",t:"GovHack 2025 — with Infosys",d:"'Unlocking Productivity Through Connected Health Data'.",award:true}];
 
@@ -760,6 +787,21 @@ const EDU=[
 {d:"Postgraduate Diploma in Business Administration (IT)",i:"University of Moratuwa, Sri Lanka",y:"2007 – 2009"},
 {d:"BSc (Special) Engineering — Computer Engineering",i:"University of Peradeniya, Sri Lanka",y:"1999 – 2004",det:"Merit Pass · GPA 3.45 / 4.2"},
 {d:"St. Servatius' College, Matara",i:"Secondary Education",y:"",det:"Mathematics Country Rank: 169"}];
+
+// Medium build series, in series order (t title, s subtitle, d date, u url)
+const POSTS=[
+{t:"Label-Aware RAG: Asymmetric Indexing for Multi-Label Classification at Scale",d:"Jun 16, 2026",u:"https://medium.com/@pramukha/label-aware-rag-asymmetric-indexing-for-multi-label-classification-at-scale-3e1eebf308bb",
+ s:"How prepending labels to documents lifted a production RAG from F1 0.42 to 0.63, without training a new model."},
+{t:"Why I Fine-Tuned DeBERTa Instead of Asking the LLM Harder",d:"Jun 23, 2026",u:"https://medium.com/@pramukha/why-i-fine-tuned-deberta-instead-of-asking-the-llm-harder-edb8ea0ebe25",
+ s:"A 700MB encoder beat prompt engineering on a several-hundred-class task, then quantised to 233MB for CPU inference."},
+{t:"5 Lines of Code Turned My FastAPI App Into Dozens of AI-Agent Tools",d:"Jul 21, 2026",u:"https://medium.com/@pramukha/5-lines-of-code-turned-my-fastapi-app-into-dozens-of-ai-agent-tools-7a7396258685",
+ s:"Mounting fastapi-mcp exposed a whole prediction API as Model Context Protocol tools, with the auth it already had."},
+{t:"The Hybrid Trick: Why a Fine-Tuned Classifier and an LLM Beat Either Alone",d:"Jul 31, 2026",u:"https://medium.com/@pramukha/the-hybrid-trick-why-a-fine-tuned-classifier-and-an-llm-beat-either-alone-95bbfe46917e",
+ s:"Injecting a classifier's predictions into an agentic LLM as verifiable priors bought another 5%, after averaging made things worse."},
+{t:"When Local Evals Lie: Cloud A/B Testing and the Myth of the Better Model",d:"Jul 31, 2026",u:"https://medium.com/@pramukha/when-local-evals-lie-cloud-a-b-testing-and-the-myth-of-the-better-model-cddd9e86415b",
+ s:"A newer reasoner, a second classifier and an LLM council added little or nothing: complementarity, not novelty, decides ensemble value."},
+{t:"How I Made My AI Learn From Every Correction, Without Retraining",d:"Aug 2, 2026",u:"https://medium.com/@pramukha/how-i-made-my-ai-learn-from-every-correction-without-retraining-a1632324607d",
+ s:"Reviewer corrections flow back into the vector index, not a training run, so expert-validated cases become better neighbours."}];
 
 const MARQ=["LangChain","LangGraph","Agentic RAG","MCP","A2A","Azure OpenAI","Azure AI Search","pgvector","FastAPI","Python",".NET 8","Java","React","Kubernetes","Docker","Terraform","PostgreSQL","Neo4j","Solution Architecture"];
 
@@ -847,8 +889,18 @@ PROJ.forEach((p,i)=>{
     <div class="pbody"><h3>${p.t}</h3><div class="porg">${p.org}</div>
       <p class="pdesc">${p.d}</p>
       <div class="impact"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg><span>${p.impact}</span></div>
+      ${p.link?`<a class="plink" href="${p.link.u}" target="_blank" rel="noopener noreferrer">${p.link.l}<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>`:''}
       <div class="techs">${p.tech.map(t=>`<span class="tech">${t}</span>`).join('')}</div>
     </div></article>`));
+});
+
+// writing
+const po=document.getElementById('posts');
+POSTS.forEach((p,i)=>{
+  po.appendChild(el(`<li class="rv" style="--d:${i*60}ms"><a class="post" href="${p.u}" target="_blank" rel="noopener noreferrer">
+    <span class="pdate mono">${p.d}</span>
+    <span><b>${p.t}</b><span class="psub">${p.s}</span></span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>`));
 });
 
 // skills

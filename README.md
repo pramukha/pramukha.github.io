@@ -49,11 +49,12 @@ Most sections are rendered by JS from constants near the top of the single `<scr
 | Const | Renders |
 |---|---|
 | `EXP` | Experience timeline (`role, co, loc, per, now, sum, pts[], tech[]`) |
-| `PROJ` | Featured projects (`t, org, dt, cat, d, impact, tech[]`). Filter buttons come from the unique `cat` values. |
+| `PROJ` | Featured projects (`t, org, dt, cat, d, impact, tech[]`, optional `link:{u,l}` for a read-more link). Filter buttons come from the unique `cat` values. |
 | `SKILLS` | Skill groups (`c` category, `i` SVG path markup for the icon, `s[]` skills) |
 | `CERTS` | Certifications & awards (`award:true` gives the amber treatment) |
 | `ACH` | The 2×2 highlights grid in About (`n` + `suf` gives an animated counter; `txt` shows a static value instead) |
 | `EDU` | Education timeline |
+| `POSTS` | Writing section: the Medium build series in series order (`t` title, `s` subtitle, `d` date, `u` URL) |
 | `MARQ` | Tech marquee under the hero |
 | `ROLES` | Rotating role line in the hero (just below the RENDER block) |
 
@@ -109,5 +110,6 @@ base64 -w0 profile.jpg > photo.b64
 ```
 
 ## Changelog
+- **Oct 2026: Medium.** Medium icon in the hero socials. New 04 Writing section listing the CAS-RAG build series (later sections renumbered 05 to 08, Writing added to the navs). The CAS-Agentic-RAG card now states measured results (F1 0.42 to 0.63, then +5% from classifier priors), links to the series and lists DeBERTa-v3, fastapi-mcp and text-embedding-3-large. Three new Inov8 bullets from the posts. "150K+ datasets" now reads "150K+ incident cases" in the bullets, the About highlight and the film.
 - **Oct 2026: About film.** A 20 s silent loop walks the career line (2004 Sri Lanka, 2014 Singapore, 2025 Wellington, GovHack 2025) and ends on the name card. It replaces the highlights grid on screen; the grid remains for reduced motion and assistive tech.
 - **Sep 2026: design refresh.** Name-first hero with a rotating role line (the old typewriter line was empty). Fixed the stat-counter sizing bug. Folded Achievements into the About highlights grid. Numbered, left-aligned section headers. Three-tier surfaces in place of glass. Indigo-led palette. Fluid type scale. Experience dates moved into their own column. Removed decorative idle motion.
