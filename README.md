@@ -54,6 +54,7 @@ Most sections are rendered by JS from constants near the top of the single `<scr
 | `CERTS` | Certifications & awards (`award:true` gives the amber treatment) |
 | `ACH` | The 2×2 highlights grid in About (`n` + `suf` gives an animated counter; `txt` shows a static value instead) |
 | `EDU` | Education timeline |
+| `GEO`, `GEO_ROUTES` | Career globe stops (`n` name, `la`/`lo` degrees, `y` years, `d` one line) and the routes between them as index pairs |
 | `POSTS` | Writing section: the Medium build series in series order (`t` title, `s` subtitle, `d` date, `u` URL) |
 | `MARQ` | Tech marquee under the hero |
 | `ROLES` | Rotating role line in the hero (just below the RENDER block) |
@@ -78,16 +79,25 @@ Fonts: **Sora** for headings, **Inter** for body text, **JetBrains Mono** for da
 | `.rv` + `style="--d:120ms"` | Scroll reveal with stagger delay |
 | `.word` + `--wd` | Hero word-by-word reveal (applied automatically to `#h1` and `#sub`) |
 | `.spot` | Cursor spotlight (styled on `.pcard` and `.hcard` only) |
-| `.tilt` | Subtle 3D tilt (project cards) |
+| `.tilt` | Subtle 3D tilt (project cards, certification cards, the About film) |
 | `[data-mag]` | Magnetic button (Download Resume only) |
 | `.count` + `data-to` | Count-up number |
 | `.tl-fill`, `.job.lit` | Timeline line draws and dots light up on scroll |
 | `.mesh`, `.grain` | Ambient blobs and film grain |
 | `.marq` | Marquee (pauses on hover) |
 | `#prog` | Scroll progress bar |
+| `#scene` | Hero 3D agent graph: a core, an agent shell and a tool/data shell with messages travelling the edges. Follows the pointer, fades as you scroll past the hero, and centres itself on the portrait. |
+| `.photo-wrap` (`--rx`, `--ry`) | Portrait parallax: the frame, photo and "20+" chip sit at different depths and tilt with the pointer. |
+| `canvas.solid` | A small rotating wireframe solid in each project banner, picked from the card's `cat` (AI: agent graph or nested solids, Cloud: stacked layers, Payments: gimbal rings). Spins faster on hover. |
+| `#globe`, `#cats` | Skills sphere built from the first three skills of each `SKILLS` group. Drag to turn it; clicking a skill, or a category in the index beside it, fills the search box. Click again to clear. |
+| `#earth`, `#stops` | Career globe at the top of Experience: dotted land (a packed 2° land mask in the script), a pin per entry in `GEO` and an arc per pair in `GEO_ROUTES`. It tours the stops by itself; drag it or pick a stop from the list. |
+| `#wave` | Field of points rolling toward the viewer behind the Contact section. |
+| `.cube` | 3D wireframe cube in the page loader (CSS only). |
 | `.film`, `#film` | About film. The video source loads only when About nears the viewport and pauses off-screen. With reduced motion the video never loads and the highlights grid shows instead; otherwise the grid stays in the page, visually hidden, for screen readers and search. |
 
-The `@media (prefers-reduced-motion: reduce)` block at the end of the CSS turns all of this off. Keep it.
+All 3D is hand-written canvas 2D with its own projection, in the `/* ============== 3D` block near the end of the script: no WebGL and no libraries. One shared frame loop drives every scene, and each scene stops drawing while it is off-screen or the tab is hidden. Colours are read from the design tokens, so both themes work without extra code.
+
+The `@media (prefers-reduced-motion: reduce)` block at the end of the CSS turns all of this off, and the 3D scenes draw a single still frame instead. Keep it.
 
 ## Constraints to keep
 1. One file: all CSS and JS stay inline.
@@ -110,6 +120,7 @@ base64 -w0 profile.jpg > photo.b64
 ```
 
 ## Changelog
+- **Nov 2026: 3D layer.** Hero agent graph behind the portrait, portrait depth parallax, wireframe solids in the project banners, a draggable skills sphere with a category index that drives the search, a 3D loader cube, and cards that tip up into place on scroll. Then a second pass: a career globe in Experience with the four countries and the routes between them, a point field behind Contact, the hero graph pulling toward the viewer on scroll, and tilt on certification cards and the About film. If `assets/` is not beside the page, About now falls back to the highlights grid in place of an empty frame. Also fixed the doubled border on the skills search box, a stray closing tag in About, and category searches hiding every pill in the matching card. No content or facts changed; still one file with no new requests.
 - **Oct 2026: Medium.** Medium icon in the hero socials. New 04 Writing section listing the CAS-RAG build series (later sections renumbered 05 to 08, Writing added to the navs). The CAS-Agentic-RAG card now states measured results (F1 0.42 to 0.63, then +5% from classifier priors), links to the series and lists DeBERTa-v3, fastapi-mcp and text-embedding-3-large. Three new Inov8 bullets from the posts. "150K+ datasets" now reads "150K+ incident cases" in the bullets, the About highlight and the film.
 - **Oct 2026: About film.** A 20 s silent loop walks the career line (2004 Sri Lanka, 2014 Singapore, 2025 Wellington, GovHack 2025) and ends on the name card. It replaces the highlights grid on screen; the grid remains for reduced motion and assistive tech.
 - **Sep 2026: design refresh.** Name-first hero with a rotating role line (the old typewriter line was empty). Fixed the stat-counter sizing bug. Folded Achievements into the About highlights grid. Numbered, left-aligned section headers. Three-tier surfaces in place of glass. Indigo-led palette. Fluid type scale. Experience dates moved into their own column. Removed decorative idle motion.
