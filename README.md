@@ -17,6 +17,7 @@ The whole site is **one self-contained `index.html`**: inline CSS and JS, no bui
 | `profile.jpg` | 680×680 source photo. The site doesn't load it; it's kept as the original for re-embedding. |
 | `resume.pdf` | Linked from the hero "Download Resume" button. |
 | `assets/about-film.mp4` | 20 s silent loop shown in About in place of the highlights grid (864×1080, H.264, no audio). Made in code; the source and render steps live in `D:\projects\motion-video\PCUB-health-safety\films\github-io`. |
+| `assets/govhack-2025-winner.jpg` | GovHack 2025 winner certificate, shown in the viewer when the award card's "View certificate" is clicked. |
 | `assets/about-film-poster.jpg` | The film's first frame, used as its poster and fallback image. |
 
 ## First-time setup: connect this folder to GitHub
@@ -51,7 +52,7 @@ Most sections are rendered by JS from constants near the top of the single `<scr
 | `EXP` | Experience timeline (`role, co, loc, per, now, sum, pts[], tech[]`) |
 | `PROJ` | Featured projects (`t, org, dt, cat, d, impact, tech[]`, optional `link:{u,l}` for a read-more link). Filter buttons come from the unique `cat` values. |
 | `SKILLS` | Skill groups (`c` category, `i` SVG path markup for the icon, `s[]` skills) |
-| `CERTS` | Certifications & awards (`award:true` gives the amber treatment; optional `u` adds a "View credential" link) |
+| `CERTS` | Certifications & awards (`award:true` gives the amber treatment; optional `u` adds a "View credential" link; optional `img` + `alt` adds a "View certificate" button that opens the image in the `#lightbox` dialog) |
 | `ACH` | The 2×2 highlights grid in About (`n` + `suf` gives an animated counter; `txt` shows a static value instead) |
 | `EDU` | Education timeline |
 | `GEO`, `GEO_ROUTES` | Career globe stops (`n` name, `la`/`lo` degrees, `y` years, `d` one line) and the routes between them as index pairs |
@@ -120,7 +121,7 @@ base64 -w0 profile.jpg > photo.b64
 ```
 
 ## Changelog
-- **Nov 2026: certification.** Added Governing AI Agents with Databricks (DeepLearning.AI, Nov 2026) with a link to the credential, and credential links on Loop Engineering with LangChain Deep Agents, Agent Skills with Anthropic, Agentic AI Certification, Building Live Voice Agents with Google's ADK and Build AI Apps with MCP Server. The GovHack 2025 award card links to its LinkedIn entry. `CERTS` entries can now carry an optional `u` link.
+- **Nov 2026: certification.** Added Governing AI Agents with Databricks (DeepLearning.AI, Nov 2026) with a link to the credential, and credential links on Loop Engineering with LangChain Deep Agents, Agent Skills with Anthropic, Agentic AI Certification, Building Live Voice Agents with Google's ADK and Build AI Apps with MCP Server. The GovHack 2025 award card opens its certificate in a viewer over the page (`assets/govhack-2025-winner.jpg`, loaded on click). `CERTS` entries can now carry an optional `u` link.
 - **Nov 2026: 3D layer.** Hero agent graph behind the portrait, portrait depth parallax, wireframe solids in the project banners, a draggable skills sphere with a category index that drives the search, a 3D loader cube, and cards that tip up into place on scroll. Then a second pass: a career globe in Experience with the four countries and the routes between them, a point field behind Contact, the hero graph pulling toward the viewer on scroll, and tilt on certification cards and the About film. If `assets/` is not beside the page, About now falls back to the highlights grid in place of an empty frame. Also fixed the doubled border on the skills search box, a stray closing tag in About, and category searches hiding every pill in the matching card. No content or facts changed; still one file with no new requests.
 - **Oct 2026: Medium.** Medium icon in the hero socials. New 04 Writing section listing the CAS-RAG build series (later sections renumbered 05 to 08, Writing added to the navs). The CAS-Agentic-RAG card now states measured results (F1 0.42 to 0.63, then +5% from classifier priors), links to the series and lists DeBERTa-v3, fastapi-mcp and text-embedding-3-large. Three new Inov8 bullets from the posts. "150K+ datasets" now reads "150K+ incident cases" in the bullets, the About highlight and the film.
 - **Oct 2026: About film.** A 20 s silent loop walks the career line (2004 Sri Lanka, 2014 Singapore, 2025 Wellington, GovHack 2025) and ends on the name card. It replaces the highlights grid on screen; the grid remains for reduced motion and assistive tech.

@@ -377,6 +377,17 @@ section+section{padding-top:0}
 .ciss{color:var(--fg-2);font-size:var(--fs-6);margin-top:5px}
 .cdate{font-size:11.5px;color:var(--muted-fg);margin-top:4px}
 .clink{margin-top:10px;font-size:12.5px;position:relative;z-index:1}
+button.clink{border:0;background:none;padding:0;font-family:inherit;cursor:pointer}
+/* certificate viewer: a native dialog, so focus is trapped and Esc closes it */
+#lightbox{border:0;padding:0;margin:auto;background:transparent;max-width:min(94vw,1180px);max-height:94vh;overflow:visible}
+#lightbox::backdrop{background:rgba(5,7,12,.8);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#lightbox img{max-width:100%;max-height:88vh;width:auto;height:auto;border-radius:12px;box-shadow:0 30px 80px -20px rgba(0,0,0,.8);background:#fff}
+#lightbox[open]{animation:lbIn .35s var(--ease)}
+@keyframes lbIn{from{opacity:0;transform:perspective(1000px) rotateX(8deg) scale(.96)}}
+.lb-x{position:absolute;top:-14px;right:-14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--border-2);background:var(--s1);color:var(--fg);
+  display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow)}
+.lb-x:hover{border-color:var(--primary);color:var(--primary)}
+@media(max-width:600px){.lb-x{top:-48px;right:0}}
 .awtag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#d97706;margin-bottom:6px}
 [data-theme="dark"] .awtag{color:#fbbf24}
 
@@ -718,6 +729,10 @@ footer{border-top:1px solid var(--border);padding:56px 0 28px;background:var(--b
     <div class="copy"><span>© <span id="yr"></span> Pramuk Wijerathne</span><span>Hand-built · HTML, CSS &amp; JavaScript · No frameworks, no libraries</span></div>
   </div>
 </footer>
+<dialog id="lightbox" aria-label="Certificate">
+  <button class="lb-x" type="button" aria-label="Close certificate"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <img alt="">
+</dialog>
 <button id="top" aria-label="Back to top"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
 <script>
@@ -830,7 +845,8 @@ const SKILLS=[
  s:["Visual Studio","VS Code + Copilot","IntelliJ IDEA","JDeveloper","Cursor AI","Claude Code","Git","Bitbucket","SVN","GitLab","Linux / Bash","VisualVM"]}];
 
 const CERTS=[
-{t:"Winner — Unlocking Productivity Through Connected Health Data, GovHack 2025",iss:"Infosys",d:"Dec 2025",award:true,u:"https://www.linkedin.com/in/pramukha/overlay/Certifications/1984074827/treasury/?profileId=ACoAAAxqUBYBZDsUEeB00RY6KQ__GXVP7_-tVSA"},
+{t:"Winner — Unlocking Productivity Through Connected Health Data, GovHack 2025",iss:"Infosys",d:"Dec 2025",award:true,img:"assets/govhack-2025-winner.jpg",
+ alt:"GovHack 2025 Certificate of Achievement, Winner, presented to Pramukha Wijerathne for the challenge Unlocking Productivity Through Connected Health Data, sponsored by Infosys. Project Proacta, team 2772."},
 {t:"Governing AI Agents with Databricks",iss:"DeepLearning.AI",d:"Nov 2026",u:"https://www.deeplearning.ai/accomplishments/b8a4fe47-8ec0-4cc2-9eba-61392f29a71b"},
 {t:"Loop Engineering with LangChain Deep Agents",iss:"DeepLearning.AI",d:"Oct 2026",u:"https://www.deeplearning.ai/accomplishments/8d25a377-f401-44ba-b1b1-7e792a5c9907"},
 {t:"Agent Skills with Anthropic",iss:"DeepLearning.AI",d:"Feb 2026",u:"https://www.deeplearning.ai/accomplishments/558600cf-8240-493a-91a2-43f8b3a7b908"},
@@ -1011,7 +1027,7 @@ CERTS.forEach((c,i)=>{
    :'<path d="M9 12l2 2 4-4"/><path d="M12 3a9 9 0 1 0 9 9"/>';
   cg.appendChild(el(`<div class="ccard tilt spot rv ${c.award?'award':''}" style="--d:${(i%3)*85}ms">
     <span class="cico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">${ico}</svg></span>
-    <div>${c.award?'<span class="awtag">Award</span>':''}<h3>${c.t}</h3><div class="ciss">${c.iss}</div><div class="cdate mono">${c.d}</div>${c.u?`<a class="plink clink" href="${c.u}" target="_blank" rel="noopener noreferrer">View credential<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>`:''}</div></div>`));
+    <div>${c.award?'<span class="awtag">Award</span>':''}<h3>${c.t}</h3><div class="ciss">${c.iss}</div><div class="cdate mono">${c.d}</div>${c.img?`<button type="button" class="plink clink" data-img="${c.img}" data-alt="${c.alt||c.t}" aria-haspopup="dialog">View certificate<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>`:''}${c.u?`<a class="plink clink" href="${c.u}" target="_blank" rel="noopener noreferrer">View credential<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>`:''}</div></div>`));
 });
 
 // highlights (About)
@@ -1473,6 +1489,18 @@ const statics=[]; // redrawn on theme change and resize when motion is reduced
 
 // repaint the still frames when the theme flips; live scenes pick the new palette up on their next frame
 new MutationObserver(()=>{readPal();statics.forEach(f=>f())}).observe(root,{attributes:true,attributeFilter:['data-theme']});
+
+// certificate viewer: the image loads only when a card asks for it; click outside, the button or Esc closes it
+(function(){
+  const lb=document.getElementById('lightbox');if(!lb||!lb.showModal)return;
+  const im=lb.querySelector('img');
+  document.addEventListener('click',e=>{
+    const b=e.target.closest?.('[data-img]');if(!b)return;
+    im.src=b.dataset.img;im.alt=b.dataset.alt;lb.showModal();
+  });
+  lb.querySelector('.lb-x').addEventListener('click',()=>lb.close());
+  lb.addEventListener('click',e=>{if(e.target===lb)lb.close()});
+})();
 
 // contact -> mailto
 document.getElementById('cform').addEventListener('submit',e=>{
