@@ -376,6 +376,7 @@ section+section{padding-top:0}
 .ccard h3{font-size:var(--fs-5);font-weight:600;line-height:1.4}
 .ciss{color:var(--fg-2);font-size:var(--fs-6);margin-top:5px}
 .cdate{font-size:11.5px;color:var(--muted-fg);margin-top:4px}
+.clink{margin-top:10px;font-size:12.5px;position:relative;z-index:1}
 .awtag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#d97706;margin-bottom:6px}
 [data-theme="dark"] .awtag{color:#fbbf24}
 
@@ -830,6 +831,7 @@ const SKILLS=[
 
 const CERTS=[
 {t:"Winner — Unlocking Productivity Through Connected Health Data, GovHack 2025",iss:"Infosys",d:"Dec 2025",award:true},
+{t:"Governing AI Agents with Databricks",iss:"DeepLearning.AI",d:"Nov 2026",u:"https://www.deeplearning.ai/accomplishments/b8a4fe47-8ec0-4cc2-9eba-61392f29a71b"},
 {t:"Loop Engineering with LangChain Deep Agents",iss:"DeepLearning.AI",d:"Oct 2026"},
 {t:"Agent Skills with Anthropic",iss:"DeepLearning.AI",d:"Feb 2026"},
 {t:"Agentic AI Certification",iss:"DeepLearning.AI",d:"Oct 2025"},
@@ -1009,7 +1011,7 @@ CERTS.forEach((c,i)=>{
    :'<path d="M9 12l2 2 4-4"/><path d="M12 3a9 9 0 1 0 9 9"/>';
   cg.appendChild(el(`<div class="ccard tilt spot rv ${c.award?'award':''}" style="--d:${(i%3)*85}ms">
     <span class="cico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">${ico}</svg></span>
-    <div>${c.award?'<span class="awtag">Award</span>':''}<h3>${c.t}</h3><div class="ciss">${c.iss}</div><div class="cdate mono">${c.d}</div></div></div>`));
+    <div>${c.award?'<span class="awtag">Award</span>':''}<h3>${c.t}</h3><div class="ciss">${c.iss}</div><div class="cdate mono">${c.d}</div>${c.u?`<a class="plink clink" href="${c.u}" target="_blank" rel="noopener noreferrer">View credential<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>`:''}</div></div>`));
 });
 
 // highlights (About)
